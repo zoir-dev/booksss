@@ -1,0 +1,94 @@
+.auth{
+    display: grid;
+    place-items: center;
+    height: 100vh;
+    overflow-y: auto;
+}
+.auth .card{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    border-radius: 12px;
+    gap: 36px;
+    width: 430px;
+    max-width: 100%;
+    box-shadow: 0px 4px 32px 0px rgba(51, 51, 51, 0.04); 
+    padding: 48px 28px;
+    background-color: #FEFEFE;
+}
+.auth .card h2{
+    font-size: 36px;
+    font-weight: 500;
+}
+.auth .card .sign_with{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+.sign_with button{
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    padding: 10px 24px;
+    text-transform: none;
+    font-size: 16px;
+}
+.sign_with button:hover{
+    border-color: var(--main-color);
+}
+.auth_form{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+.auth_form input{
+    padding: 14px 16px !important;
+    font-size: 16px !important;
+}
+.auth_form .css-1hpqosy-MuiFormControlLabel-root{
+    /* -webkit-align-items:left !important; */
+    align-items: flex-start;
+    margin: 0;
+}
+.auth_form .css-ahj2mt-MuiTypography-root{
+    font-size: 14px;
+    padding-bottom: 4px;
+}
+.auth_form .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input{
+    padding: 14px 16px;
+    border:1px solid #EBEBEB !important;
+    border-radius: 6px;
+}
+.auth_form .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input:focus{
+    border-color: var(--main-color) !important;
+    box-shadow: none !important;
+}
+
+
+.focus-red{
+    border-color: red !important;
+}
+.focus-normal{
+    border: blue !important;
+}
+
+.button_div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 12px;
+}
+.button_div p{
+    font-size: 12px;
+}
+.button_div p a{
+    text-decoration: none;
+    color: #1B28BC;
+}
+
+@media screen and (max-width:576px) {
+    .auth .card {
+        width: 95%;
+    }
+    
+}

@@ -1,0 +1,117 @@
+@font-face {
+  font-family: 'Mulish';
+  src: url('https://fonts.googleapis.com/css?family=Mulish');
+}
+:root {
+  font-family: 'Mulish',sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: #151515;
+  background-color: #F8F8F8;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+
+  --main-color:#6200EE;
+  --secondary-color:#FF4D4F;
+}
+
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.bg{
+  background-image: url('./assets/bg.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 100%;
+  height: 100vh;
+}
+
+.not_found{
+  display: grid;
+  place-items: center;
+}
+
+.not_found div {
+  display: flex;
+  flex-direction: column;
+  gap: 72px;
+  padding: 0 10px;
+}
+
+.not_found div img{
+  max-width: 100%;
+}
+
+.not_found div div{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 12px;
+}
+
+.main_button{
+    background-color: var(--main-color) !important;
+    font-size: 16px !important;
+    text-transform: none !important;
+    margin-top: 20px;
+    padding: 10px 48px !important;
+}
+
+.main_button_outlined{
+    color: var(--main-color) !important;
+    border-color: var(--main-color) !important;
+    font-size: 16px !important;
+    text-transform: capitalize !important;
+    padding: 10px 24px !important;
+}
+
+.disabled_button{
+  touch-action: none;
+  opacity: 0.3;
+  pointer-events: none;
+}
+.error_alert{
+  background-color: #d32f2f !important;
+  color: white !important;
+}
+.error_alert svg{
+  color: white !important;
+}
+.home_div{
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+  padding: 12px 100px;
+}
+@media screen and (max-width:1500px){
+  .home_div{
+    padding: 12px 60px;
+  }
+}
+@media screen and (max-width:1200px){
+  .home_div{
+    padding: 12px 16px;
+  }
+}
+
+@media screen and (max-width:1050px){
+  .bg{
+    background-size: cover;
+    background-position: right top;
+  }
+}
+@media screen and (max-width:405px){
+  .not_found div div{
+    flex-direction: column;
+  }
+}
