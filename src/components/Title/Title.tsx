@@ -1,13 +1,19 @@
 import { Button } from "@mui/material"
-import { useState } from "react"
 import plus from '../../assets/plus.png'
 import './style.css'
-const Title = ({ setOpen }: { setOpen: (val: boolean) => void }) => {
-    const [search, setSearch] = useState('')
+import { ModalFormValues } from "../Books/typing"
+
+interface thisProps {
+    setOpen: (val: boolean) => void,
+    books: Array<ModalFormValues>,
+    search: string,
+    setSearch: (val: string) => void
+}
+const Title = ({ setOpen, books, search, setSearch }: thisProps) => {
     return (
         <div className="title_div">
             <div className="title_left">
-                <h1>You've got <span>7 books</span></h1>
+                <h1>You've got <span>{books?.length} books</span></h1>
                 <p>Your task today</p>
             </div>
             <div className="title_right">

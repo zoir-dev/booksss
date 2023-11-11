@@ -87,6 +87,13 @@
 .error_alert svg{
   color: white !important;
 }
+.success_alert{
+  background-color: #52C41A !important;
+  color: white !important;
+}
+.success_alert svg{
+  color: white !important;
+}
 .home_div{
   display: flex;
   flex-direction: column;
@@ -100,7 +107,7 @@
 }
 @media screen and (max-width:1200px){
   .home_div{
-    padding: 12px 16px;
+    padding: 12px 32px;
   }
 }
 

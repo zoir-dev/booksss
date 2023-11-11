@@ -19,7 +19,7 @@ const Header = () => {
                     <img src={bell} alt="" />
                     <img src={red} alt="" />
                 </div>
-                <div className='user_img'>
+                <div className='user_img' onClick={() => localStorage.setItem('data', JSON.stringify({ name: '' }))}>
                     <img src="https://picsum.photos/60" loading='lazy' alt="" />
                     <img src={user_img} alt="" />
                 </div>

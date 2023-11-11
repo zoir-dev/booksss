@@ -1,4 +1,4 @@
-import { Alert, Button, Card, Divider, FormControl, FormControlLabel, InputAdornment, Snackbar, TextField } from "@mui/material"
+import { Button, Card, Divider, FormControl, FormControlLabel, InputAdornment, TextField } from "@mui/material"
 import google from '../../assets/google.png'
 import facebook from '../../assets/facebook.png'
 import red_close from '../../assets/red_close.png'
@@ -8,6 +8,8 @@ import { Link, useNavigate } from "react-router-dom"
 import { IFormValues } from "./typing"
 import { http } from "../../api/http"
 import { useState } from "react"
+import Alert from '../Alert'
+import ProtectedRoute from "../../pages/ProtectedRoute"
 
 
 const Auth = ({ type }: { type?: string }) => {
@@ -70,79 +72,75 @@ const Auth = ({ type }: { type?: string }) => {
     };
 
     return (
-        <div className="bg auth">
-            <Card className="card" >
-                <h2>
-                    {type ? 'Sign up' : 'Sign in'}
-                </h2>
-                <div className="sign_with">
-                    <Button variant="outlined" color="inherit" fullWidth>
-                        <img src={google} alt="" />
-                        Continue with Google
-                    </Button>
-                    <Button variant="outlined" color="inherit" fullWidth>
-                        <img src={facebook} alt="" />
-                        Continue with Facebook
-                    </Button>
-                </div>
-                <Divider orientation="horizontal" flexItem >
-                    OR
-                </Divider>
-                <form onSubmit={handleSubmit(onSubmit)} className="auth_form">
-                    {type && renderFormControl('name', 'Name',
-                        { required: 'Name is required' })}
-                    {type && renderFormControl('username', 'Username',
-                        { required: 'Username is required' })}
-                    {renderFormControl('email', 'Email',
-                        {
-                            required: ('Email is required'), pattern: {
-                                value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
-                                message: "Invalid email format",
-                            },
-                        })}
-                    {renderFormControl('password', 'Password',
-                        {
-                            required: ('Password is required'), minLength: {
-                                value: 6,
-                                message: "Password should contain min 6 characters",
-                            },
-                        })}
-                    <div className="button_div">
-                        <Button
-                            type="submit"
-                            fullWidth
-                            variant="contained"
-                            className={`main_button ${loading && 'disabled_button'}`}
-                        >
-                            {loading ? 'Submitting...' : 'Submit'}
+        <ProtectedRoute>
 
+            <div className="bg auth">
+                <Card className="card" >
+                    <h2>
+                        {type ? 'Sign up' : 'Sign in'}
+                    </h2>
+                    <div className="sign_with">
+                        <Button variant="outlined" color="inherit" fullWidth>
+                            <img src={google} alt="" />
+                            Continue with Google
                         </Button>
-                        {
-                            type ?
-                                <p>Have an account?{' '}
-                                    <Link to='/login'>
-                                        Go to sign in.
-                                    </Link>
-                                </p>
-                                :
-                                <p>Already signed up?{' '}
-                                    <Link to='/sign'>
-                                        Go to sign up.
-                                    </Link>
-                                </p>
-                        }
+                        <Button variant="outlined" color="inherit" fullWidth>
+                            <img src={facebook} alt="" />
+                            Continue with Facebook
+                        </Button>
                     </div>
-                </form>
-            </Card>
-            <Snackbar
-                open={error}
-                autoHideDuration={5000}
-                onClose={() => setError(false)}
-                anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-            >
-                <Alert className="error_alert" severity="error">{message}</Alert>
-            </Snackbar>
-        </div>
+                    <Divider orientation="horizontal" flexItem >
+                        OR
+                    </Divider>
+                    <form onSubmit={handleSubmit(onSubmit)} className="auth_form">
+                        {type && renderFormControl('name', 'Name',
+                            { required: 'Name is required' })}
+                        {type && renderFormControl('username', 'Username',
+                            { required: 'Username is required' })}
+                        {renderFormControl('email', 'Email',
+                            {
+                                required: ('Email is required'), pattern: {
+                                    value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
+                                    message: "Invalid email format",
+                                },
+                            })}
+                        {renderFormControl('password', 'Password',
+                            {
+                                required: ('Password is required'), minLength: {
+                                    value: 6,
+                                    message: "Password should contain min 6 characters",
+                                },
+                            })}
+                        <div className="button_div">
+                            <Button
+                                type="submit"
+                                fullWidth
+                                variant="contained"
+                                className={`main_button ${loading && 'disabled_button'}`}
+                            >
+                                {loading ? 'Submitting...' : 'Submit'}
+
+                            </Button>
+                            {
+                                type ?
+                                    <p>Have an account?{' '}
+                                        <Link to='/login'>
+                                            Go to sign in.
+                                        </Link>
+                                    </p>
+                                    :
+                                    <p>Already signed up?{' '}
+                                        <Link to='/sign'>
+                                            Go to sign up.
+                                        </Link>
+                                    </p>
+                            }
+                        </div>
+                    </form>
+                </Card>
+                <Alert open={error} setOpen={setError} message={message} severity="error" />
+            </div>
+        </ProtectedRoute>
     )
 }
 
