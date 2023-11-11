@@ -4,9 +4,9 @@ const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
   const navigate = useNavigate()
 
   useEffect(() => {
-    if (!JSON.parse(localStorage.getItem('data')).key && window.location.pathname === '/') {
+    if (!JSON.parse(localStorage.getItem('data') || '').key && window.location.pathname === '/') {
       return navigate('/sign')
-    } else if (JSON.parse(localStorage.getItem('data')).key) {
+    } else if (JSON.parse(localStorage.getItem('data') || '').key) {
       return navigate('/')
     }
   }, [window.location.pathname])
