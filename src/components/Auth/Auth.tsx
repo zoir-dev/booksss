@@ -17,7 +17,7 @@ const Auth = ({ type }: { type?: string }) => {
     const [error, setError] = useState(false)
     const [message, setMessage] = useState('')
 
-    const { register, handleSubmit, formState: { errors } } = useForm<IFormValues>();
+    const { register, handleSubmit, formState: { errors } } = useForm<any>();
     const navigate = useNavigate()
 
     const onSubmit = async (data: IFormValues) => {
@@ -41,6 +41,7 @@ const Auth = ({ type }: { type?: string }) => {
     }
 
     const renderFormControl = (namee: string, label: string, validationRules: any) => {
+
         return (
             <FormControl>
                 <FormControlLabel
@@ -49,8 +50,8 @@ const Auth = ({ type }: { type?: string }) => {
                     control={
                         <TextField
                             {...register(namee, validationRules)}
-                            error={errors[namee] ?? false}
-                            helperText={errors[namee] && errors[namee].message}
+                            error={errors[namee] ? true : false}
+                            helperText={errors[namee]?.message}
                             placeholder={`Enter ${namee}`}
                             fullWidth
                             type={label === 'Password' ? 'password' : ''}

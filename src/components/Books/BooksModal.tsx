@@ -21,7 +21,7 @@ const BooksModal = ({ open, setOpen, fetchBooks, type, setType }: thisProps) => 
     const [loading, setLoading] = useState(false)
     const [message, setMessage] = useState('')
 
-    const { register, handleSubmit, formState: { errors }, reset } = useForm<ModalFormValues>();
+    const { register, handleSubmit, formState: { errors }, reset } = useForm<any>();
 
 
     const onSubmit = async (data: ModalFormValues) => {
@@ -39,7 +39,7 @@ const BooksModal = ({ open, setOpen, fetchBooks, type, setType }: thisProps) => 
             // "pages": 221
         }
         setLoading(true)
-        await axios.post('https://0001.uz/books',
+        await axios.post('https://no23.lavina.tech/books',
             JSON.stringify(d),
             {
                 headers: {
@@ -75,8 +75,8 @@ const BooksModal = ({ open, setOpen, fetchBooks, type, setType }: thisProps) => 
                     control={
                         <TextField
                             {...register(namee, validationRules)}
-                            error={errors[namee] ?? false}
-                            helperText={errors[namee] && errors[namee].message}
+                            error={errors[namee] ? true : false}
+                            helperText={errors[namee] && errors[namee]?.message}
                             placeholder={`Enter your ${namee}`}
                             fullWidth
                             type={label === 'Published' ? 'year' : ''}

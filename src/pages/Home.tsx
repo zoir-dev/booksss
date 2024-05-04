@@ -6,7 +6,7 @@ import ProtectedRoute from "./ProtectedRoute"
 
 const Home = () => {
     const [open, setOpen] = useState<boolean>(false)
-    const [books, setBooks] = useState([])
+    const [books, setBooks] = useState<any[]>([])
     const [search, setSearch] = useState('')
     return (
         <ProtectedRoute>

@@ -24,7 +24,7 @@ const Books = ({ open, setOpen, books, setBooks, search }: thisProps) => {
         const res = 'GET' + `/books${search ? `/${search}` : ''}` + dataa?.secret
         const token = CryptoJS.MD5(res).toString()
         setLoading(true)
-        await axios.get(`https://0001.uz/books${search ? `/${search}` : ''}`, {
+        await axios.get(`https://no23.lavina.tech/books${search ? `/${search}` : ''}`, {
             headers: {
                 "Content-Type": "application/json",
                 Key: dataa.key,
@@ -40,6 +40,9 @@ const Books = ({ open, setOpen, books, setBooks, search }: thisProps) => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [search])
 
+    console.log(books);
+
+
 
 
     return (
@@ -49,11 +52,11 @@ const Books = ({ open, setOpen, books, setBooks, search }: thisProps) => {
                     <CircularProgress />
                 </Box>
                 :
-                books.length === 0 ?
+                books?.length === 0 ?
                     <Typography fontSize='39px' fontWeight='600' textAlign='center' color='#6200EE' >
                         No books
                     </Typography> :
-                    books.map((b) => (
+                    books?.map((b) => (
 
                         <Book b={b ? b : ''}
                             setBooks={setBooks}

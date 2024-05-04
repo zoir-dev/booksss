@@ -1,15 +1,14 @@
 import { Card } from "@mui/material";
 import deleteIcon from '../../assets/trash.png'
 import edit from '../../assets/edit.png'
-import { ModalFormValues } from "./typing";
 import axios from "axios";
 import CryptoJS from "crypto-js";
 import { useState } from "react";
 import Alert from '../Alert'
 
 interface thisProps {
-    b: ModalFormValues,
-    setBooks: (val: ModalFormValues[]) => void,
+    b: any,
+    setBooks: (val: any) => void,
     setType: (val: string) => void,
     setModal: (val: boolean) => void
 }
@@ -22,7 +21,7 @@ const Book = ({ b, setBooks, setType, setModal }: thisProps) => {
         const dataa = JSON.parse(userData ? userData : '')
         const res = 'DELETE' + `/books/${b.book ? b.book.id : b.id}` + dataa.secret
         const token = CryptoJS.MD5(res).toString()
-        await axios.delete(`https://0001.uz/books/${b.book ? b.book.id : b.id}`, {
+        await axios.delete(`https://no23.lavina.tech/books/${b.book ? b.book.id : b.id}`, {
             headers: {
                 "Content-Type": "application/json",
                 Key: dataa.key,
@@ -31,7 +30,7 @@ const Book = ({ b, setBooks, setType, setModal }: thisProps) => {
         }).then((e) => {
             setMessage("The book deleted successfully!")
             setOpen(true)
-            setBooks(e.data.data.map(d => d?.book))
+            setBooks(e.data.data.map((d: any) => d?.book))
         }).catch(e => {
             setOpen(true)
             setMessage(e.response.data.message)
